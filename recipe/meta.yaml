@@ -14,17 +14,16 @@ source:
 
 build:
   number: 0
-  features:
-    - vc10  # [win and py34]
-    - vc14  # [win and py>34]
   skip: True  # [py27]
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
-    - toolchain
     - rapidjson =={{ rapidjson_version }}
+
+  build:
+    - {{ compiler('cxx') }}
 
   run:
     - python
