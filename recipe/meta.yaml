@@ -1,6 +1,6 @@
 {% set name = "python-rapidjson" %}
-{% set version = "0.9.1" %}
-{% set sha256 = "ad80bd7e4bb15d9705227630037a433e2e2a7982b54b51de2ebabdd1611394a1" %}
+{% set version = "0.9.4" %}
+{% set sha256 = "d79a412d7df30f01d3cb12e0e8863a48cfecd2fd7612719e16bc76eb1b65b332" %}
 {% set rapidjson_version = "1.1.0" %}
 
 package:
