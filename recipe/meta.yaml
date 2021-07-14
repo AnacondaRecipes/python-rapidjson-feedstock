@@ -14,7 +14,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [py27]
+  skip: True  # [py36]
 
 requirements:
   build:
@@ -23,6 +23,8 @@ requirements:
 
   host:
     - python
+    - pip
+    - wheel
     - setuptools
     - rapidjson =={{ rapidjson_version }}
 
@@ -32,6 +34,10 @@ requirements:
 test:
   imports:
     - rapidjson
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/python-rapidjson/python-rapidjson
