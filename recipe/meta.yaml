@@ -20,14 +20,12 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-
   host:
     - python
     - pip
     - wheel
     - setuptools
     - rapidjson =={{ rapidjson_version }}
-
   run:
     - python
 
@@ -36,8 +34,12 @@ test:
     - rapidjson
   requires:
     - pip
+    - pytest
+  source_files:
+    - tests
   commands:
     - pip check
+    - pytest tests
 
 about:
   home: https://github.com/python-rapidjson/python-rapidjson
