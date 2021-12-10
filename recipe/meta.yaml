@@ -14,7 +14,9 @@ source:
 
 build:
   number: 0
-  skip: True  # [py36]
+  # This package isn't included in the SOW Packages.
+  # Also there isn't rapidjson==1.1.0 on s390x
+  skip: True  # [py36 or s390x]
 
 requirements:
   build:
