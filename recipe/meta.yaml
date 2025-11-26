@@ -1,26 +1,22 @@
 {% set name = "python-rapidjson" %}
 {% set version = "1.22" %}
-{% set sha256 = "ebe16d1f92a6e325f319c5d22f751f2127840fd6fb4a1ed6e0749e7873ff03f3" %}
-{% set rapidjson_version = "1.1.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/python_rapidjson-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: ebe16d1f92a6e325f319c5d22f751f2127840fd6fb4a1ed6e0749e7873ff03f3
 
 build:
   number: 0
-  # This package isn't included in the SOW Packages.
-  skip: true  # [py38 or s390x]
+  skip: true  # [py<36]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
-    - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
   host:
     - python
@@ -32,12 +28,17 @@ requirements:
     - python
 
 test:
+  source_files:
+    - tests
   imports:
     - rapidjson
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v test
 
 about:
   home: https://github.com/python-rapidjson/python-rapidjson
