@@ -34,7 +34,8 @@ test:
     - rapidjson
   requires:
     - pip
-    - pytest
+    - pytest >=8.4.1
+    - pytz >=2025.2
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
